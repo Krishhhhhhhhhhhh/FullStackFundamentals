@@ -4,18 +4,27 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
+  const [title,setTitle]=useState("My name is ");
 
+  function updateTitle(){
+    setTitle("My name is "+ Math.random())
+  }
   return (
-  <div>
-
-  </div>
+  <>
+    <button onClick={updateTitle}>Update the title</button>
+    <Header title={title}></Header>
+    <Header title="head1"></Header>
+    <Header title="head2"></Header>
+  </>
   )
 }
 
- function markup()
- {
-  const [count,setcount]=useState(0)
- }
+function Header({title})
+{
+  return <div>
+    {title}
+  </div>
+}
 
 export default App
