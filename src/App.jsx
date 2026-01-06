@@ -4,21 +4,19 @@ import './App.css'
 
 function App() {
   return (
-    <div>
-      <CardWrapper innerComponent={<TextComponent/>}/>
+    <div style={{display:"flex"}}>
+     <Card>
+      <h2>Hi from h2</h2>
+     </Card>
     </div>
   )
 
 }
-function TextComponent() {
-  return <h1>TextComponent</h1>
+function Card({children})
+{
+  return <div style={{border:"2px solid blue",padding:10,margin:10}}>
+    {children}
+  </div>
 }
-function CardWrapper({innerComponent}) {
-  return<div style={{border:"2px solid black",padding:"10px",margin:"10px"}}>
-    {innerComponent}
-    </div>
-}
-
-
 
 export default App
