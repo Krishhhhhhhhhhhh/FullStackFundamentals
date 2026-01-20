@@ -1,11 +1,13 @@
-import { useState, useMemo } from "react";
+import { useContext,useState } from "react";
+import {CountContext} from "./context";
+import {Navigate} from "react-router-dom";
 
-function App() {
-  const [count,setCount]=useState(0)
-  return <div>
-    <button onClick={()=> {setCount(count+1)}}>Click me {count}</button>
-  </div>
-  
+function App()
+{
+  count [count,setCount]=useState(0);
+  return (
+    <div>
+      
+    </div>
+  )
 }
-
-export default App;
