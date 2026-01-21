@@ -46,3 +46,4 @@ function Buttons(){
     }}>Decrease</button>
   </div>
 }
+export default App;
