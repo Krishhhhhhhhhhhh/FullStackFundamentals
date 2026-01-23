@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useContext,useState } from "react";
+import {CountContext} from "./context";
+import {Navigate} from "react-router-dom";
+import {useRecoilValue,RecoilRoot,useRecoilState, useSetRecoilState} from "recoil"
+import {countAtom} from "./store/atoms/count.jsx"
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App()
+{
+ 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <RecoilRoot>
+
+      <Count/>
+
+      </RecoilRoot>
+    </div>
   )
 }
+function Count()
+{
+  return <div>
 
-export default App
+    <CountRenderer/>
+    <Buttons/>
+  </div>
+}
+
+function CountRenderer()
+{
+  const count=useRecoilValue(countAtom);
+  return <div>
+    <b>
+      {count}
+    </b>
+    <EvenCountRenderer/>
+  </div>
+}
+function EvenCountRenderer()
+{
+  const count=useRecoilValue(countAtom)
+  return <div>
+    {(count %2==0)?"It is even":null}
+  </div>
+}
+function Buttons(){
+  const [count,setCount]=useRecoilState(countAtom);
+  return <div>
+    <button onClick={()=>{
+      setCount(count+1)
+    }}>Increase</button>
+    <button onClick={()=>{
+      setCount(count-1)
+    }}>Decrease</button>
+  </div>
+}
+export default App;
